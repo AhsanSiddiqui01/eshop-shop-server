@@ -5,8 +5,12 @@ const morgan       = require('morgan')
 const mongoose     = require('mongoose')
 const authJwt      = require('./helpers/jwt')
 const errorHandler = require('./helpers/error-handler')
+const cors         = require('cors')
 //get can take two parameters first one is route and second one is call back
 require('dotenv/config')
+
+app.use(cors())
+app.options('*',cors())
 
 const api           = process.env.API_URL
 const connectString = process.env.CONNECTION_STRING
@@ -50,13 +54,15 @@ mongoose.connect(connectString)
     console.log('Not Connected',err)
 })
 
+app.listen(3000)
+
 //Development
-app.listen(3000, ()=>{
-    console.log("SERVER IS RUNNING NOW")
-})
+// app.listen(3000, ()=>{
+//     console.log("SERVER IS RUNNING NOW")
+// })
 
 //Production
-var server = app.listen(process.env.PORT || 3000, function () {
-    var port  = server.address().port
-    console.log('Express is working on port' + port)
-})
+// var server = app.listen(process.env.PORT || 3000, function () {
+//     var port  = server.address().port
+//     console.log('Express is working on port' + port)
+// })
