@@ -54,15 +54,15 @@ mongoose.connect(connectString)
     console.log('Not Connected',err)
 })
 
-app.listen(3000)
+// app.listen(3000)
 
 //Development
-// app.listen(3000, ()=>{
-//     console.log("SERVER IS RUNNING NOW")
-// })
+app.listen(3000, ()=>{
+    console.log("SERVER IS RUNNING NOW")
+})
 
 //Production
-// var server = app.listen(process.env.PORT || 3000, function () {
-//     var port  = server.address().port
-//     console.log('Express is working on port' + port)
-// })
+var server = app.listen(process.env.PORT || 3000, function () {
+    var port  = server.address().port
+    console.log('Express is working on port' + port)
+})
